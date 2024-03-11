@@ -54,21 +54,21 @@ RUN set -ex; \
         docker-php-ext-configure gd \
                 --with-freetype-dir=/usr/include/ \
                 --with-jpeg-dir=/usr/include/ \
-        ; \
-        docker-php-ext-install -j "$(nproc)" \
-                mysqli \
-                gd \
-                sockets \
-                pdo_mysql \
-                gettext \
-                snmp \
-                pcntl \
-        ; \
-        ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
-        ; \
-        echo ". /etc/environment" >> /etc/apache2/envvars \
-        ; \
-        a2enmod rewrite
+#        ; \
+#        docker-php-ext-install -j "$(nproc)" \
+#                mysqli \
+#                gd \
+#                sockets \
+#                pdo_mysql \
+#                gettext \
+#                snmp \
+#                pcntl \
+#        ; \
+#        ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
+#        ; \
+#        echo ". /etc/environment" >> /etc/apache2/envvars \
+#        ; \
+#        a2enmod rewrite
 
  
 RUN cpanm \
