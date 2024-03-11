@@ -22,28 +22,35 @@ services:
       ports:
         - 11080:80
         - 11443:443
-      depends_on:
-        - nedi
-
-  # NeDi service
-  nedi:
-      build:
-        dockerfile: nedi/Dockerfile
-      depends_on:
-        - mariadb
+        - 514:514
       environment:
         NEDI_DB_HOST: mariadb
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
+
+#     depends_on:
+#       - nedi
+
+# # NeDi service
+# nedi:
+#     build:
+#       dockerfile: nedi/Dockerfile
+#     depends_on:
+#       - mariadb
+#     environment:
+#       NEDI_DB_HOST: mariadb
+#       NEDI_DB_NAME: nedi
+#       NEDI_DB_USER: root
+#       NEDI_DB_PASS: N3diRox
 #      volumes:
 #        - /var/local/docker/nedi/:/var/nedi
-      networks:
-        - backend
-      ports:
-        - 514:514
-        - 12080:80
-        - 12443:443
+#     networks:
+#       - backend
+#     ports:
+#       - 514:514
+#       - 12080:80
+#       - 12443:443
 
   # phpMyAdmin Service
   phpmyadmin:
