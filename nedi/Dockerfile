@@ -126,8 +126,8 @@ RUN set -ex; \
 #       ; \
 #       sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-COPY docker-entrypoint.sh /usr/local/bin/
-COPY install.exp /var/nedi/
+COPY nedi/docker-entrypoint.sh /usr/local/bin/
+COPY nedi/install.exp /var/nedi/
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
     chmod +x /usr/local/bin/docker-entrypoint.sh &&\
