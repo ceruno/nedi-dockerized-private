@@ -10,8 +10,6 @@ services:
       restart: always
       volumes:
         - mysqldata:/var/lib/mysql
-      networks:
-        - backend
 
   # Nginx Service
   nginx:
