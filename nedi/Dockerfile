@@ -88,7 +88,7 @@ RUN set -ex; \
 RUN set -ex; \
         curl -o /tmp/nedi-"$NEDI_VERSION".zip "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip \
         ; \
-        unizp -P "$NEDI_ZIP_PASSWORD" /tmp/nedi-"$NEDI_VERSION".zip -d /tmp \
+        unzip -P "$NEDI_ZIP_PASSWORD" /tmp/nedi-"$NEDI_VERSION".zip -d /tmp \
         ; \
         tar zxf /tmp/nedi-"$NEDI_VERSION".zip --directory /tmp/nedi/ \
         ; \
