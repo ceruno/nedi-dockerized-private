@@ -106,7 +106,7 @@ RUN set -ex; \
         ; \
 #        ln -s /var/nedi/nedi.conf /etc/nedi.conf \
 #        ; \
-        mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini \
+        mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
         ; \
         sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "${PHP_INI_DIR\php.ini}" \
         ; \
