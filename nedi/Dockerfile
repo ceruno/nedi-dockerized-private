@@ -118,12 +118,12 @@ RUN set -ex; \
         ; \
         sed -i -e  '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' /var/nedi/nedi.conf \
         ; \
-        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' /var/nedi/nedi.conf \
-        ; \
-        /var/nedi/nedi.pl -i
+        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' /var/nedi/nedi.conf
+#        ; \
+#       /var/nedi/nedi.pl -i
 #       sed -i 's#/var/nedi#/var/local/nedi#g' /var/nedi/nedi.conf \
 #       ; \
-        #sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+#       sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 COPY docker-entrypoint.sh /usr/local/bin/
 COPY install.exp /var/nedi/
