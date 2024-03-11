@@ -1,10 +1,10 @@
 FROM php:8.3-apache
 
-ENV APACHE_DOCUMENT_ROOT /var/local/nedi/html/
+ENV NGINX_DOCUMENT_ROOT /var/local/nedi/html/
 ENV PHP_INI_FILE /usr/local/etc/php/php.ini
-ENV DBHOST mysql
-ENV DBUSER root
-ENV DBNAME nedi
+ENV NEDI_DB_HOST mysql
+ENV NEDI_DB_USER root
+ENV NEDI_DB_NAME nedi
 
 #Install of dependency
 RUN set -eux; \

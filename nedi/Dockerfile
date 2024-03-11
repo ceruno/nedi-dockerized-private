@@ -1,5 +1,9 @@
 FROM php:8.1-fpm
 
+ENV NEDI_DB_HOST mysql
+ENV NEDI_DB_NAME nedi
+ENV NEDI_DB_USER root
+
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libdbd-mysql-perl \
@@ -94,7 +98,7 @@ RUN set -ex; \
         ; \
         chown -R www-data:www-data /var/log/nedi \
         ; \
-        /var/nedi/nedi.pl -i "${DBUSER} ${DBPASS} \
+        /var/nedi/nedi.pl -i "${NEDI_DB_USER} ${NEDI_DB_PASS} \
         ; \
         ln -s /var/nedi/nedi.conf /etc/nedi.conf \
         ; \
@@ -102,13 +106,13 @@ RUN set -ex; \
         ; \
         sed -i -e "s/^post_max_size.*/post_max_size = 1G/"  "${PHP_INI_FILE}" \
         ; \
-        sed -i '/dbhost/s/localhost/'"${DBHOST}"'/g' /var/local/nedi/nedi.conf \
+        sed -i '/dbhost/s/localhost/'"${NEDI_DB_HOST}"'/g' /var/local/nedi/nedi.conf \
         ; \
-        sed -i '/dbuser/s/nedi/'"${DBUSER}"'/g' /var/local/nedi/nedi.conf \
+        sed -i '/dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' /var/local/nedi/nedi.conf \
         ; \
         sed -i 's#/var/nedi#/var/local/nedi#g' /var/local/nedi/nedi.conf \
         ; \
-        sed -i '/dbname/s/nedi/'"${DBNAME}"'/g' /var/local/nedi/nedi.conf
+        sed -i '/dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' /var/local/nedi/nedi.conf
 
         #sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 

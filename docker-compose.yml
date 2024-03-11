@@ -4,45 +4,44 @@ services:
 
   # MariaDB database
   mariadb:
-    image: mariadb:10.11
-    environment:
-      MARIADB_ROOT_PASSWORD: N3diRox
-      MARIADB_DATABASE: nedi
-    restart: always
-    volumes:
+      image: mariadb:10.11
+      environment:
+        MARIADB_ROOT_PASSWORD: N3diRox
+      restart: always
+      volumes:
         - mysqldata:/var/lib/mysql
-    networks:
-      - backend
+      networks:
+        - backend
 
   # Nginx Service
   nginx:
       image: nginx:latest
       ports:
-          - 80:80
-          - 443:443
+        - 80:80
+        - 443:443
       links:
-          - 'nedi'
+        - 'nedi'
       volumes:
-          - './nedi-files:/var/www/html'
-          - './nginx-conf:/etc/nginx/conf.d'
+        - './nedi-files:/var/www/html'
+        - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
-          - nedi
+        - nedi
 
   # NeDi service
   nedi:
-    build:
+      build:
         dockerfile: nedi/Dockerfile
-    depends_on:
-      - mariadb
-    environment:
-      NEDI_DB_HOST: mariadb
-      NEDI_DB_NAME: nedi
-      NEDI_DB_USER: root
-      NEDI_DB_PASS: N3diRox
-    volumes:
-      - /var/local/docker/nedi/:/var/nedi
-    ports:
-      - "514:514"
+      depends_on:
+        - mariadb
+      environment:
+        NEDI_DB_HOST: mariadb
+        NEDI_DB_NAME: nedi
+        NEDI_DB_USER: root
+        NEDI_DB_PASS: N3diRox
+      volumes:
+        - /var/local/docker/nedi/:/var/nedi
+      ports:
+        - 514:514
 
   # phpMyAdmin Service
   phpmyadmin:
