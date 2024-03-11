@@ -13,6 +13,7 @@ ENV PHP_INI_FILE /etc/php/8.1/fpm/php.ini
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
      curl \
+     unzip \
 #    libdbd-mysql-perl \
 #    libnet-snmp-perl \
 #    libnet-telnet-perl \
