@@ -8,7 +8,7 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     echo "-- First container startup --"
     # YOUR_JUST_ONCE_LOGIC_HERE
 sleep 60
-expect /var/local/nedi/install.exp $NEDI_DB_USER $NEDI_DB_PASS
+expect /var/nedi/install.exp $NEDI_DB_USER $NEDI_DB_PASS
 sleep 3600
 else
 echo "Already first setup"

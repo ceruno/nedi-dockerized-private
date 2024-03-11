@@ -12,6 +12,7 @@ ENV NEDI_ZIP_PASSWORD RR4JC
 
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
+     expect
      curl \
      unzip \
      tar \
@@ -129,8 +130,8 @@ COPY docker-entrypoint.sh /usr/local/bin/
 COPY install.exp /var/nedi/
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
-     chmod +x /usr/local/bin/docker-entrypoint.sh &&\
-     chmod +x /var/nedi/install.exp
+    chmod +x /usr/local/bin/docker-entrypoint.sh &&\
+    chmod +x /var/nedi/install.exp
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["--no-daemonize"]
