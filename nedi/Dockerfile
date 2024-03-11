@@ -8,6 +8,8 @@ ENV NEDI_SOURCE http://www.nedi.ch/pub
 ENV NEDI_VERSION 2.3C
 ENV NEDI_ZIP_PASSWORD RR4JC
 
+ENV PHP_INI_FILE /etc/php/8.1/fpm/php.ini
+
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
      curl \
@@ -71,16 +73,16 @@ RUN set -ex; \
 #       a2enmod rewrite
 
  
-RUN cpanm \
-    Net::SNMP \
-    Net::Telnet \
-    Algorithm::Diff \
-    DBI \
-    Socket6 \
-    LWP::UserAgent \
-    Net::DNS::Resolver \
-    Net::NTP \
-    IO::Tty
+#RUN cpanm \
+#    Net::SNMP \
+#    Net::Telnet \
+#    Algorithm::Diff \
+#    DBI \
+#    Socket6 \
+#    LWP::UserAgent \
+#    Net::DNS::Resolver \
+#    Net::NTP \
+#    IO::Tty
 
 RUN set -ex; \
         curl -o "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip /tmp/ \
@@ -101,7 +103,7 @@ RUN set -ex; \
         ; \
         ln -s /var/nedi/nedi.conf /etc/nedi.conf \
         ; \
-        sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 2G/"  "${PHP_INI_FILE}" \
+        sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "${PHP_INI_FILE}" \
         ; \
         sed -i -e "s/^post_max_size.*/post_max_size = 1G/"  "${PHP_INI_FILE}" \
         ; \
