@@ -2,6 +2,7 @@
 set timeout 10
 set user [lindex $argv 0]
 set password [lindex $argv 1]
+set dbhost [lindex $argv 5]
 
 spawn /var/nedi/nedi.pl -i
 expect "user:"
@@ -9,6 +10,6 @@ expect "user:"
         expect "pass:"
         send "$password\r";
 expect "on:";
-        send "\r";
+        send "$dbhost\r";
 expect "done:"
-        interact
+#        interact
