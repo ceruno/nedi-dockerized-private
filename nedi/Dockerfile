@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN set -ex; \
         \
         docker-php-ext-configure mysqli \
-                --with-mysqli=mysqlnd \
+                --with-mysqli=mysqlnd
 #       ; \
 #       docker-php-ext-configure gd \
 #               --with-freetype-dir=/usr/include/ \
