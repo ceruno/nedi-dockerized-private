@@ -24,4 +24,4 @@ RUN set -ex; \
 #        ln -s /var/nedi/nedi.conf /etc/nedi.conf \
 #        ; \
 
-COPY nedi.conf /etc/nginx/conf.d
+COPY nginx/nedi.conf /etc/nginx/conf.d
