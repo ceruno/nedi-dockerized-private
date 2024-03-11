@@ -82,8 +82,6 @@ RUN cpanm \
     Net::NTP \
     IO::Tty
 
-ADD 
-
 RUN set -ex; \
         curl -o "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip /tmp/ \
         ; \
