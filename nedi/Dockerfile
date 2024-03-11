@@ -64,10 +64,10 @@ RUN set -ex; \
         docker-php-ext-configure mysqli \
                 --with-mysqli=mysqlnd \
         ; \
-        docker-php-ext-configure gd \
+        docker-php-ext-configure gd
 #               --with-freetype-dir=/usr/include/ \
 #               --with-jpeg-dir=/usr/include/ \
-        ; \
+#      ; \
 #       ; \
 #       ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
 #       ; \
