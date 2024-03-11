@@ -36,8 +36,8 @@ services:
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
-      volumes:
-        - /var/local/docker/nedi/:/var/nedi
+#      volumes:
+#        - /var/local/docker/nedi/:/var/nedi
       ports:
         - 514:514
 
