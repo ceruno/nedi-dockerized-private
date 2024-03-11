@@ -12,7 +12,7 @@ ENV NEDI_ZIP_PASSWORD RR4JC
 
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
-     expect
+     expect \
      curl \
      unzip \
      tar \
