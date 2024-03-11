@@ -33,18 +33,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      mariadb-client \
      cron \
      cpanminus \
-     php-mysql \
-     php-snmp \
-     php-gd \
-     php-ldap \
-     php-mcrypt \
+#    php-mysql \
+#    php-snmp \
+#    php-gd \
+#    php-ldap \
+#    php-mcrypt \
      rrdtool \
      nginx \
      openssl \
      fping \
      inetutils-ping \
      libsnmp-dev \
-     libsnmp30 \
+#    libsnmp30 \
      libfreetype6-dev \
      libjpeg62-turbo-dev \
 && rm -rf /var/lib/apt/lists/*
