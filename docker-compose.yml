@@ -11,21 +11,17 @@ services:
       volumes:
         - mysqldata:/var/lib/mysql
       networks:
-        default:
+        backend:
           aliases:
             - "mysql"
 
   # Nginx Service
   nginx:
-      image: nginx:latest
+      build:
+        dockerfile: nginx/Dockerfile
       ports:
         - 80:80
         - 443:443
-      links:
-        - 'nedi'
-      volumes:
-        - './nedi-files:/var/www/html'
-        - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
         - nedi
 
@@ -42,6 +38,8 @@ services:
         NEDI_DB_PASS: N3diRox
 #      volumes:
 #        - /var/local/docker/nedi/:/var/nedi
+      networks:
+        - backend
       ports:
         - 514:514
 
@@ -57,7 +55,7 @@ services:
 
 networks:
   backend:
-  frontend:
+    driver: bridge
 
 # Volumes
 volumes:
