@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Create user
-sed -i 's#dbpa55#'${NEDI_DB_PASS}'#g' /var/local/nedi/nedi.conf
+sed -i 's#dbpa55#'${NEDI_DB_PASS}'#g' /var/nedi/nedi.conf
 CONTAINER_ALREADY_STARTED="/var/nedi/already_first_start.pid"
 if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     touch $CONTAINER_ALREADY_STARTED
