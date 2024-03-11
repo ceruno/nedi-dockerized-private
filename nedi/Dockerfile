@@ -108,7 +108,7 @@ RUN set -ex; \
 #        ; \
         mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
         ; \
-        sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "${PHP_INI_DIR\php.ini}" \
+        sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "$PHP_INI_DIR/php.ini" \
         ; \
 #       sed -i -e "s/^post_max_size.*/post_max_size = 1G/"  "${PHP_INI_DIR\php.ini}" \
 #       ; \
