@@ -1,5 +1,5 @@
 ### NeDi Dockerized 
-![Nedi logo](http://www.nedi.ch/wp-content/uploads/nedi-dgray-320.jpg)
+![Nedi logo](https://nedi.ch/wp-content/uploads/nedi.png)
 
 *** Re-Launch of The BETA :D *
 
