@@ -4,41 +4,46 @@ ENV NEDI_DB_HOST mysql
 ENV NEDI_DB_NAME nedi
 ENV NEDI_DB_USER root
 
+ENV NEDI_SOURCE http://www.nedi.ch/pub
+ENV NEDI_VERSION 2.3C
+ENV NEDI_ZIP_PASSWORD RR4JC
+
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libdbd-mysql-perl \
-    libnet-snmp-perl \
-    libnet-telnet-perl \
-    libsocket6-perl \
-    librrds-perl \
-    libalgorithm-diff-perl \
-    libcrypt-rijndael-perl \
-    libcrypt-hcesha-perl \
-    libcrypt-des-perl \
-    libdigest-hmac-perl \
-    libio-pty-perl \
-    libwww-perl \
-    libnet-ntp-perl \
-    libnet-dns-perl \
-    perl-doc \
-    mariadb-client \
-    cron \
-    cpanminus \
-    php-mysql \
-    php-snmp \
-    php-gd \
-    php-ldap \
-    php-mcrypt \
-    rrdtool \
-    nginx \
-    openssl \
-    fping \
-    inetutils-ping \
-    libsnmp-dev \
-    libsnmp30 \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
- && rm -rf /var/lib/apt/lists/*
+     curl \
+#    libdbd-mysql-perl \
+#    libnet-snmp-perl \
+#    libnet-telnet-perl \
+#    libsocket6-perl \
+#    librrds-perl \
+#    libalgorithm-diff-perl \
+#    libcrypt-rijndael-perl \
+#    libcrypt-hcesha-perl \
+#    libcrypt-des-perl \
+#    libdigest-hmac-perl \
+#    libio-pty-perl \
+#    libwww-perl \
+#    libnet-ntp-perl \
+#    libnet-dns-perl \
+#    perl-doc \
+#    mariadb-client \
+#    cron \
+#    cpanminus \
+#    php-mysql \
+#    php-snmp \
+#    php-gd \
+#    php-ldap \
+#    php-mcrypt \
+#    rrdtool \
+#    nginx \
+#    openssl \
+#    fping \
+#    inetutils-ping \
+#    libsnmp-dev \
+#    libsnmp30 \
+#    libfreetype6-dev \
+#    libjpeg62-turbo-dev \
+&& rm -rf /var/lib/apt/lists/*
 
  # Configure apache and required PHP modules
 RUN set -ex; \
@@ -65,11 +70,6 @@ RUN set -ex; \
         ; \
         a2enmod rewrite
 
-COPY php.ini /usr/local/etc/php/
-
-ENV NEDI_SOURCE http://www.nedi.ch/pub
-ENV NEDI_VERSION 2.3C
-ENV NEDI_ZIP_PASSWORD RR4JC
  
 RUN cpanm \
     Net::SNMP \
@@ -82,10 +82,11 @@ RUN cpanm \
     Net::NTP \
     IO::Tty
 
-ADD "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip /tmp/
+ADD 
 
 RUN set -ex; \
-        \
+        curl -o "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip /tmp/ \
+        ; \
         unizp -P "$NEDI_ZIP_PASSWORD" /tmp/nedi-"$NEDI_VERSION".zip -d /tmp \
         ; \
         tar zxf /tmp/nedi-"$NEDI_VERSION".zip --directory /tmp/nedi/ \
