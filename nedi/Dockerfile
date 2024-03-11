@@ -14,6 +14,7 @@ ENV PHP_INI_FILE /etc/php/8.1/fpm/php.ini
 RUN apt-get update && apt-get install -y --no-install-recommends \
      curl \
      unzip \
+     tar \
 #    libdbd-mysql-perl \
 #    libnet-snmp-perl \
 #    libnet-telnet-perl \
@@ -90,7 +91,9 @@ RUN set -ex; \
         ; \
         unzip -P "$NEDI_ZIP_PASSWORD" /tmp/nedi-"$NEDI_VERSION".zip -d /tmp \
         ; \
-        tar zxf /tmp/nedi-"$NEDI_VERSION".zip --directory /tmp/nedi/ \
+        mkdir /tmp/nedi \
+        ; \
+        tar zxf /tmp/nedi-"$NEDI_VERSION".tgz --directory /tmp/nedi/ \
         ; \
         mv /tmp/nedi /var/nedi 
 #       ; \
