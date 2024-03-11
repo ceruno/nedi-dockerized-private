@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      curl \
      unzip \
      tar \
+     openssl \
 && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex; \
@@ -27,7 +28,13 @@ RUN set -ex; \
         ; \
         mkdir -p /var/log/nedi \
         ; \
-        chown -R www-data:www-data /var/log/nedi
+        chown -R www-data:www-data /var/log/nedi \
+        ; \
+        openssl genrsa -out /etc/ssl/private/server.key 2048 \
+        ; \
+        openssl req -new -key /etc/ssl/private/server.key -out /etc/ssl/server.csr -subj "/C=CH/ST=ZH/L=Zurich/O=NeDi Consulting/OU=R&D" \
+        ; \
+        openssl x509 -req -days 1260 -in /etc/ssl/server.csr -signkey /etc/ssl/private/server.key -out /etc/ssl/server.crt
 #        ; \
 #        ln -s /var/nedi/nedi.conf /etc/nedi.conf \
 #        ; \

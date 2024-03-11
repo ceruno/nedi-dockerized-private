@@ -20,8 +20,8 @@ services:
       build:
         dockerfile: nginx/Dockerfile
       ports:
-        - 80:80
-        - 443:443
+        - 11080:80
+        - 11443:443
       depends_on:
         - nedi
 
@@ -47,7 +47,7 @@ services:
   phpmyadmin:
       image: phpmyadmin/phpmyadmin:latest
       ports:
-          - 8080:80
+          - 18080:80
       environment:
           PMA_HOST: mariadb
       depends_on:
