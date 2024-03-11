@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #    perl-doc \
 #    mariadb-client \
 #    cron \
-     cpanminus \
+#    cpanminus \
 #    php-mysql \
 #    php-snmp \
 #    php-gd \
@@ -91,29 +91,29 @@ RUN set -ex; \
         ; \
         tar zxf /tmp/nedi-"$NEDI_VERSION".zip --directory /tmp/nedi/ \
         ; \
-        mv /tmp/nedi /var/nedi \
-        ; \
-        chown -R www-data:www-data /var/nedi \
-        ; \
-        mkdir -p /var/log/nedi \
-        ; \
-        chown -R www-data:www-data /var/log/nedi \
-        ; \
-        /var/nedi/nedi.pl -i "${NEDI_DB_USER} ${NEDI_DB_PASS} \
-        ; \
-        ln -s /var/nedi/nedi.conf /etc/nedi.conf \
-        ; \
-        sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "${PHP_INI_FILE}" \
-        ; \
-        sed -i -e "s/^post_max_size.*/post_max_size = 1G/"  "${PHP_INI_FILE}" \
-        ; \
-        sed -i '/dbhost/s/localhost/'"${NEDI_DB_HOST}"'/g' /var/local/nedi/nedi.conf \
-        ; \
-        sed -i '/dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' /var/local/nedi/nedi.conf \
-        ; \
-        sed -i 's#/var/nedi#/var/local/nedi#g' /var/local/nedi/nedi.conf \
-        ; \
-        sed -i '/dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' /var/local/nedi/nedi.conf
+        mv /tmp/nedi /var/nedi 
+#       ; \
+#       chown -R www-data:www-data /var/nedi \
+#       ; \
+#       mkdir -p /var/log/nedi \
+#       ; \
+#       chown -R www-data:www-data /var/log/nedi \
+#       ; \
+#       /var/nedi/nedi.pl -i ${NEDI_DB_USER} ${NEDI_DB_PASS} \
+#       ; \
+#       ln -s /var/nedi/nedi.conf /etc/nedi.conf \
+#       ; \
+#       sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "${PHP_INI_FILE}" \
+#       ; \
+#       sed -i -e "s/^post_max_size.*/post_max_size = 1G/"  "${PHP_INI_FILE}" \
+#       ; \
+#       sed -i '/dbhost/s/localhost/'"${NEDI_DB_HOST}"'/g' /var/local/nedi/nedi.conf \
+#       ; \
+#       sed -i '/dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' /var/local/nedi/nedi.conf \
+#       ; \
+#       sed -i 's#/var/nedi#/var/local/nedi#g' /var/local/nedi/nedi.conf \
+#       ; \
+#       sed -i '/dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' /var/local/nedi/nedi.conf
 
         #sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
