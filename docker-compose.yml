@@ -42,6 +42,8 @@ services:
         - backend
       ports:
         - 514:514
+        - 12080:80
+        - 12443:443
 
   # phpMyAdmin Service
   phpmyadmin:
