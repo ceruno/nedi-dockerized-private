@@ -4,6 +4,14 @@ ENV NEDI_SOURCE http://www.nedi.ch/pub
 ENV NEDI_VERSION 2.3C
 ENV NEDI_ZIP_PASSWORD RR4JC
 
+#Install of dependency
+RUN apt-get update && apt-get install -y --no-install-recommends \
+     expect \
+     curl \
+     unzip \
+     tar \
+&& rm -rf /var/lib/apt/lists/*
+
 RUN set -ex; \
         curl -o /tmp/nedi-"$NEDI_VERSION".zip "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip \
         ; \
