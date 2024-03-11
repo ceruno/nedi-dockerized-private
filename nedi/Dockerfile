@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #    perl-doc \
 #    mariadb-client \
 #    cron \
-#    cpanminus \
+     cpanminus \
 #    php-mysql \
 #    php-snmp \
 #    php-gd \
