@@ -137,4 +137,4 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["--no-daemonize"]
 
 WORKDIR /var/nedi/
-EXPOSE 514
+EXPOSE 80 443 514 9000
