@@ -28,6 +28,9 @@ services:
         - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
         - nedi
+      networks:
+        - backend
+        - frontend
 
   # NeDi service
   nedi:
@@ -56,9 +59,14 @@ services:
           PMA_HOST: mariadb
       depends_on:
           - mariadb
+      networks:
+        - backend
+        - frontend
 
 networks:
   backend:
+    driver: bridge
+  frontend:
     driver: bridge
 
 # Volumes
