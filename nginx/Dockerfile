@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginx:1.25
 
 ENV NEDI_SOURCE http://www.nedi.ch/pub
 ENV NEDI_VERSION 2.3C
@@ -36,4 +36,5 @@ RUN set -ex; \
         openssl x509 -req -days 1260 -in /etc/ssl/server.csr -signkey /etc/ssl/private/server.key -out /etc/ssl/server.crt
 
 
-COPY nginx/nedi.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nedi.conf /etc/nginx/conf.d/nedi.conf
+COPY nginx/phpmyadmin.conf /etc/nginx/conf.d/phpmyadmin.conf

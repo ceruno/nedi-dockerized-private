@@ -2,16 +2,14 @@
 
 # Create user
 # sed -i 's#dbpa55#'${NEDI_DB_PASS}'#g' /var/nedi/nedi.conf
-CONTAINER_ALREADY_STARTED="/var/nedi/already_first_start.pid"
+CONTAINER_ALREADY_STARTED="/var/nedi/use_existing_database.pid"
 if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     touch $CONTAINER_ALREADY_STARTED
     echo "-- First container startup --"
     # YOUR_JUST_ONCE_LOGIC_HERE
-sleep 60
-expect /var/nedi/install.exp $NEDI_DB_USER $NEDI_DB_PASS
-sleep 3600
+    expect /var/nedi/install.exp $NEDI_DB_USER $NEDI_DB_PASS
 else
-echo "Already first setup"
-sleep 3600
+    echo "DB is already initialized."
 fi
-php-fpm
+
+/usr/local/etc/php-fpm.sh

@@ -5,9 +5,9 @@ services:
   # MariaDB database
   mariadb:
       image: mariadb:10.11
+      restart: unless-stopped
       environment:
         MARIADB_ROOT_PASSWORD: N3diRox
-      restart: always
       volumes:
         - mysqldata:/var/lib/mysql
       networks:
@@ -19,9 +19,12 @@ services:
   nginx:
       build:
         dockerfile: nginx/Dockerfile
+      restart: unless-stopped
       ports:
         - 11080:80
         - 11443:443
+        - 18080:8080
+        - 18443:8443
       links:
         - nedi
 #     volumes:
@@ -36,6 +39,7 @@ services:
   nedi:
       build:
         dockerfile: nedi/Dockerfile
+      restart: unless-stopped
       depends_on:
         - mariadb
       environment:
@@ -43,8 +47,8 @@ services:
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
-#     volumes:
-#       - './nedi/files:/var/nedi/'
+      volumes:
+        - './nedi/files/db-status:/var/nedi/db-status'
       networks:
         - backend
       ports:
@@ -52,9 +56,8 @@ services:
 
   # phpMyAdmin Service
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin:latest
-      ports:
-          - 18080:80
+      image: phpmyadmin/phpmyadmin:5-fpm-alpine
+      restart: no
       environment:
           PMA_HOST: mariadb
       depends_on:
