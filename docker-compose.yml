@@ -24,7 +24,7 @@ services:
       links:
         - nedi
       volumes:
-        - './nedi/files:/var/www'
+        - './nedi/files:/var/nedi'
         - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
         - nedi
