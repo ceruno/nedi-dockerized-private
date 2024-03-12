@@ -24,7 +24,7 @@ services:
       links:
         - nedi
       volumes:
-        - './nedi-files:/var/www/html'
+        - './nedi/files:/var/www/html'
         - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
         - nedi
@@ -43,8 +43,8 @@ services:
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
-#      volumes:
-#        - /var/local/docker/nedi/:/var/nedi
+      volumes:
+        - './nedi/files:/var/nedi'
       networks:
         - backend
       ports:
