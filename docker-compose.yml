@@ -67,7 +67,7 @@ networks:
   backend:
     driver: bridge
   frontend:
-    driver: bridge
+    driver: host
 
 # Volumes
 volumes:
