@@ -62,16 +62,16 @@ RUN set -ex; \
         docker-php-ext-configure gd
 
  
-#RUN cpanm \
-#    Net::SNMP \
-#    Net::Telnet \
-#    Algorithm::Diff \
-#    DBI \
-#    Socket6 \
-#    LWP::UserAgent \
-#    Net::DNS::Resolver \
-#    Net::NTP \
-#    IO::Tty
+RUN cpanm \
+    Net::SNMP \
+    Net::Telnet \
+    Algorithm::Diff \
+    DBI \
+    Socket6 \
+    LWP::UserAgent \
+    Net::DNS::Resolver \
+    Net::NTP \
+    IO::Tty
 
 RUN set -ex; \
         curl -o /tmp/nedi-"$NEDI_VERSION".zip "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip \
@@ -84,12 +84,12 @@ RUN set -ex; \
         ; \
         mv /tmp/nedi /var/nedi \
         ; \
-        chown -R www-data:www-data /var/nedi \
-        ; \
+#       chown -R www-data:www-data /var/nedi \
+#       ; \
         mkdir -p /var/log/nedi \
         ; \
-        chown -R www-data:www-data /var/log/nedi \
-        ; \
+#       chown -R www-data:www-data /var/log/nedi \
+#       ; \
         mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
         ; \
         sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "$PHP_INI_DIR/php.ini" \
