@@ -23,8 +23,8 @@ services:
       ports:
         - 11080:80
         - 11443:443
-        - 18080:8080
-        - 18443:8443
+#       - 8080:8080
+#       - 8443:8443
       links:
         - nedi
 #     volumes:
@@ -56,14 +56,17 @@ services:
 
   # phpMyAdmin Service
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin:5-fpm-alpine
+      image: phpmyadmin/phpmyadmin
       restart: no
       environment:
           PMA_HOST: mariadb
       depends_on:
-          - mariadb
+        - mariadb
       networks:
         - backend
+      ports:
+        - 8080:8080
+        - 8443:8443
 
 networks:
   backend:

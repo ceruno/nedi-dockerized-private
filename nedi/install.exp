@@ -7,9 +7,8 @@ set dbhost [lindex $argv 2]
 spawn /var/nedi/nedi.pl -i
 expect "user:"
         send "$user\r"
-        expect "pass:"
+expect "pass:"
         send "$password\r";
 expect "on:";
         send "$dbhost\r";
 expect "done:"
-        interact
