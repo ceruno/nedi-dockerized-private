@@ -36,5 +36,5 @@ RUN set -ex; \
         openssl x509 -req -days 1260 -in /etc/ssl/server.csr -signkey /etc/ssl/private/server.key -out /etc/ssl/server.crt
 
 
-COPY nginx/nedi.conf /etc/nginx/conf.d/nedi.conf
+COPY nginx/nedi.conf /etc/nginx/conf.d/default.conf
 COPY nginx/phpmyadmin.conf /etc/nginx/conf.d/phpmyadmin.conf
