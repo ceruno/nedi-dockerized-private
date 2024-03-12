@@ -14,3 +14,4 @@ else
 echo "Already first setup"
 sleep 3600
 fi
+php-fpm

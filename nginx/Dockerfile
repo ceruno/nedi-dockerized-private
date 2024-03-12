@@ -11,43 +11,7 @@ ENV NEDI_ZIP_PASSWORD RR4JC
 
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
-     expect \
-     curl \
-     unzip \
-     tar \
      openssl \
-     libdbd-mysql-perl \
-     libnet-snmp-perl \
-     libnet-telnet-perl \
-     libsocket6-perl \
-     librrds-perl \
-     libalgorithm-diff-perl \
-     libcrypt-rijndael-perl \
-     libcrypt-hcesha-perl \
-     libcrypt-des-perl \
-     libdigest-hmac-perl \
-     libio-pty-perl \
-     libwww-perl \
-     libnet-ntp-perl \
-     libnet-dns-perl \
-     perl-doc \
-     mariadb-client \
-     cron \
-     cpanminus \
-     php-mysql \
-     php-snmp \
-     php-gd \
-     php-ldap \
-     php-mcrypt \
-     rrdtool \
-     nginx \
-     openssl \
-     fping \
-     inetutils-ping \
-     libsnmp-dev \
-#    libsnmp30 \
-     libfreetype6-dev \
-     libjpeg62-turbo-dev \
 && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex; \

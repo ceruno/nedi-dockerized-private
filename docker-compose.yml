@@ -17,7 +17,8 @@ services:
 
   # Nginx Service
   nginx:
-      image: nginx:latest
+      build:
+        dockerfile: nginx/Dockerfile
       ports:
         - 11080:80
         - 11443:443
@@ -30,7 +31,6 @@ services:
         - nedi
       networks:
         - backend
-        - frontend
 
   # NeDi service
   nedi:
@@ -44,7 +44,7 @@ services:
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
       volumes:
-        - './nedi/files:/var/nedi/html_nginx'
+        - './nedi/files:/var/nedi/'
       networks:
         - backend
       ports:
@@ -61,13 +61,10 @@ services:
           - mariadb
       networks:
         - backend
-        - frontend
 
 networks:
   backend:
     driver: bridge
-  frontend:
-    driver: host
 
 # Volumes
 volumes:
