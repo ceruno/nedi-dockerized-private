@@ -24,9 +24,9 @@ services:
         - 11443:443
       links:
         - nedi
-      volumes:
-        - './nedi/files:/var/nedi'
-        - './nginx-conf:/etc/nginx/conf.d'
+#     volumes:
+#       - './nedi/files:/var/nedi'
+#       - './nginx-conf:/etc/nginx/conf.d'
       depends_on:
         - nedi
       networks:
@@ -43,8 +43,8 @@ services:
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
-      volumes:
-        - './nedi/files:/var/nedi/'
+#     volumes:
+#       - './nedi/files:/var/nedi/'
       networks:
         - backend
       ports:
