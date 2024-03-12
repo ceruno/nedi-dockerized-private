@@ -12,4 +12,4 @@ else
     echo "DB is already initialized."
 fi
 
-/usr/local/sbin/php-fpm.sh
+/usr/local/sbin/php-fpm
