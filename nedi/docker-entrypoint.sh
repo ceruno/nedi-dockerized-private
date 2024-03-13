@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Create user
+# Create DB
+sleep 60
 # sed -i 's#dbpa55#'${NEDI_DB_PASS}'#g' /var/nedi/nedi.conf
 DB_ALREADY_INITIALIZED="/var/nedi/db-status/use_existing_database.pid"
 if [ ! -e $DB_ALREADY_INITIALIZED ]; then

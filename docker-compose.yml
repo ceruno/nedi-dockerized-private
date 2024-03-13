@@ -30,6 +30,7 @@ services:
 #     volumes:
 #       - './nedi/files:/var/nedi'
 #       - './nginx-conf:/etc/nginx/conf.d'
+#       - './ssl:/etc/ssl/'
       depends_on:
         - nedi
       networks:

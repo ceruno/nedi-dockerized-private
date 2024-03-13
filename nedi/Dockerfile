@@ -84,12 +84,8 @@ RUN set -ex; \
         ; \
         mv /tmp/nedi /var/nedi \
         ; \
-#       chown -R www-data:www-data /var/nedi \
-#       ; \
         mkdir -p /var/log/nedi \
         ; \
-#       chown -R www-data:www-data /var/log/nedi \
-#       ; \
         mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
         ; \
         sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "$PHP_INI_DIR/php.ini" \
@@ -104,6 +100,19 @@ RUN set -ex; \
 
 COPY nedi/docker-entrypoint.sh /usr/local/bin/
 COPY nedi/install.exp /var/nedi/
+
+# Setting up syslog and monitoring startup scripts
+COPY nedi/nedi-monitor /etc/init.d/
+COPY nedi/nedi-syslog /etc/init.d/
+
+RUN set -ex; \
+        chmod 755 /etc/init.d/nedi-monitor \
+        ; \
+        update-rc.d nedi-monitor defaults \
+        ; \
+        chmod 755 /etc/init.d/nedi-syslog \
+        ; \
+        update-rc.d nedi-syslog defaults
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
     chmod +x /usr/local/bin/docker-entrypoint.sh &&\

@@ -1,13 +1,14 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          nedi-syslog
+# Provides:          nedi-monitor
 # Required-Start:    mysql
 # Required-Stop:
 # Should-Start:
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start NeDi's syslog service
-# Description:       Receive and stor syslog events in NeDi's events table
+# Short-Description: Start NeDi's monitoring
+# Description:       Monitored targets are checked every 3 minutes 
+#                    by default, using snmp uptime or ping etc.
 #                    
 ### END INIT INFO
 
@@ -16,17 +17,17 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 case "$1" in
   start|"")
-    start-stop-daemon --start --exec /var/nedi/syslog.pl -- -Dp 1514
+    start-stop-daemon --start --exec /var/nedi/moni.pl -- -D
     ;;
   stop)
-    start-stop-daemon --stop --name syslog.pl 
+    start-stop-daemon --stop --name moni.pl 
     RETVAL="\$?"
 
     sleep 1
     return "\$RETVAL"
     ;;
   *)
-    echo "Usage: nedi-syslog [start|stop]" >&2
+    echo "Usage: nedi-monitor [start|stop]" >&2
     exit 3
     ;;
 esac
