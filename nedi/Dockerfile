@@ -73,6 +73,7 @@ RUN cpanm \
     Socket6 \
     LWP::UserAgent \
     Net::DNS::Resolver \
+    Net::Nslookup \
     Net::NTP \
     IO::Tty
 
