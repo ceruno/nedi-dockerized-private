@@ -49,7 +49,7 @@ services:
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
       volumes:
-        - 'nedifiles:/var/nedi/mapped_files'
+        - 'nedifiles:/var/nedi/'
       networks:
         - backend
       ports:
