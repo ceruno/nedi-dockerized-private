@@ -5,9 +5,7 @@ while ! mysqladmin ping -h"$NEDI_DB_HOST" --silent; do sleep 1; done
 
 # Create DB
 NEDI_FOLDER="/var/nedi"
-DB_INIT_FILE="$NEDI_FOLDER/mapped_files/db_initialized.pid"
-NEDI_CONF="$NEDI_FOLDER/mapped_files/nedi.conf"
-NEDI_CRON="$NEDI_FOLDER/mapped_files/crontab"
+DB_INIT_FILE="$NEDI_FOLDER/db_initialized.pid"
 
 if [ ! -e $DB_INIT_FILE ]; then
     touch $DB_INIT_FILE
@@ -18,15 +16,9 @@ else
     echo "DB is already initialized."
 fi
 
-if [ ! -e $NEDI_CONF ]; then
-    mv $NEDI_FOLDER/nedi.conf $NEDI_CONF
-    ln -s $NEDI_CONF $NEDI_FOLDER/nedi.conf
-    chown -R www-data:www-data $NEDI_FOLDER
-fi
-
-if [ ! -e $NEDI_CRON ]; then
-    mv $NEDI_FOLDER/inc/crontab $NEDI_CRON
-    ln -s $NEDI_CRON $NEDI_FOLDER/inc/crontab
+# Move Nedi app files to volume
+if [ ! -e $NEDI_FOLDER ]; then
+    mv /tmp/nedi $NEDI_FOLDER
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 

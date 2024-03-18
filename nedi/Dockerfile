@@ -84,12 +84,6 @@ RUN set -ex; \
         ; \
         tar zxf /tmp/nedi-"$NEDI_VERSION".tgz --directory /tmp/nedi/ \
         ; \
-        mv /tmp/nedi $NEDI_FOLDER \
-        ; \
-        mkdir -p $NEDI_FOLDER/mapped_files \
-        ; \
-        chown -R www-data:www-data $NEDI_FOLDER \
-        ; \ 
         mkdir -p $NEDI_LOG_FOLDER \
         ; \
         chown -R www-data:www-data $NEDI_LOG_FOLDER \
