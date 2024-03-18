@@ -84,7 +84,11 @@ RUN set -ex; \
         ; \
         mv /tmp/nedi /var/nedi \
         ; \
+        chown -R www-data:www-data /var/nedi \
+        ; \ 
         mkdir -p /var/log/nedi \
+        ; \
+        chown -R www-data:www-data /var/log/nedi \
         ; \
         mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
         ; \
