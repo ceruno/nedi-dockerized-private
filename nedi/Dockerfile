@@ -8,6 +8,7 @@ ENV NEDI_DB_PASS N3diRox
 ENV NEDI_SOURCE http://www.nedi.ch/pub
 ENV NEDI_VERSION 2.3C
 ENV NEDI_ZIP_PASSWORD RR4JC
+ENV NEDI_SRC_FOLDER /tmp/nedi
 ENV NEDI_FOLDER /var/nedi
 ENV NEDI_LOG_FOLDER /var/log/nedi
 
@@ -76,13 +77,13 @@ RUN cpanm \
     IO::Tty
 
 RUN set -ex; \
-        curl -o /tmp/nedi-"$NEDI_VERSION".zip "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip \
+        curl -o $NEDI_SRC_FOLDER-"$NEDI_VERSION".zip "$NEDI_SOURCE"/nedi-"$NEDI_VERSION".zip \
         ; \
-        unzip -P "$NEDI_ZIP_PASSWORD" /tmp/nedi-"$NEDI_VERSION".zip -d /tmp \
+        unzip -P "$NEDI_ZIP_PASSWORD" $NEDI_SRC_FOLDER-"$NEDI_VERSION".zip -d /tmp \
         ; \
-        mkdir -p /tmp/nedi \
+        mkdir -p $NEDI_SRC_FOLDER \
         ; \
-        tar zxf /tmp/nedi-"$NEDI_VERSION".tgz --directory /tmp/nedi/ \
+        tar zxf $NEDI_SRC_FOLDER-"$NEDI_VERSION".tgz --directory $NEDI_SRC_FOLDER \
         ; \
         mkdir -p $NEDI_LOG_FOLDER \
         ; \
@@ -92,16 +93,16 @@ RUN set -ex; \
         ; \
         sed -i -e "s/^upload_max_filesize.*/upload_max_filesize = 32M/"  "$PHP_INI_DIR/php.ini" \
         ; \
-        sed -i -e '/^dbhost/s/localhost/'"${NEDI_DB_HOST}"'/g' $NEDI_FOLDER/nedi.conf \
+        sed -i -e '/^dbhost/s/localhost/'"${NEDI_DB_HOST}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e '/^dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' $NEDI_FOLDER/nedi.conf \
+        sed -i -e '/^dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' $NEDI_FOLDER/nedi.conf \
+        sed -i -e  '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_FOLDER/nedi.conf
+        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_SRC_FOLDER/nedi.conf
 
 COPY nedi/docker-entrypoint.sh /usr/local/bin/
-COPY nedi/install.exp $NEDI_FOLDER
+COPY nedi/install.exp $NEDI_SRC_FOLDER
 
 # Setting up syslog and monitoring startup scripts
 COPY nedi/nedi-monitor /etc/init.d/
@@ -118,7 +119,7 @@ RUN set -ex; \
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
     chmod +x /usr/local/bin/docker-entrypoint.sh &&\
-    chmod +x $NEDI_FOLDER/install.exp
+    chmod +x $NEDI_SRC_FOLDER/install.exp
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["--no-daemonize"]
