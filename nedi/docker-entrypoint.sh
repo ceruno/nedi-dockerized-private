@@ -18,7 +18,7 @@ fi
 
 # Move Nedi app files to volume
 if [ ! -e $NEDI_FOLDER/nedi.conf ]; then
-    cp /tmp/nedi $NEDI_FOLDER
+    cp --verbose -r /tmp/nedi/ $NEDI_FOLDER/
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
