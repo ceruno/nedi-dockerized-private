@@ -20,13 +20,13 @@ fi
 
 if [ ! -e $NEDI_CONF ]; then
     mv $NEDI_FOLDER/nedi.conf $NEDI_CONF
-    ln -s NEDI_CONF $NEDI_FOLDER/nedi.conf
+    ln -s $NEDI_CONF $NEDI_FOLDER/nedi.conf
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
 if [ ! -e $NEDI_CRON ]; then
     mv $NEDI_FOLDER/inc/crontab $NEDI_CRON
-    ln -s NEDI_CRON $NEDI_FOLDER/inc/crontab
+    ln -s $NEDI_CRON $NEDI_FOLDER/inc/crontab
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
