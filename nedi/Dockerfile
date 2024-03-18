@@ -85,6 +85,8 @@ RUN set -ex; \
         ; \
         tar zxf $NEDI_SRC_FOLDER-"$NEDI_VERSION".tgz --directory $NEDI_SRC_FOLDER \
         ; \
+        rm -f $NEDI_SRC_FOLDER-"$NEDI_VERSION".zip \
+        ; \
         mkdir -p $NEDI_LOG_FOLDER \
         ; \
         chown -R www-data:www-data $NEDI_LOG_FOLDER \
