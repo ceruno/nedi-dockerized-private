@@ -124,5 +124,4 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["--no-daemonize"]
 
-WORKDIR $NEDI_FOLDER
 EXPOSE 514 9000
