@@ -10,14 +10,14 @@ Try to continue the work of klinnex. Thank you very much for the pre-work. <3
 
 ## Installation
 1. Clone repo
-´´´bash
+```bash
 $ git clone https://github.com/mcruise40/nedi-dockerized.git
-´´´
+```
 
 2. Run docker compose
-´´´bash
+```bash
 docker compose up -d
-´´´
+```
 
 ## Backup
 Save the Docker volumes **mysqldata** and **nedifiles**.
