@@ -27,8 +27,8 @@ services:
 #       - 8443:8443
       links:
         - nedi
-#     volumes:
-#       - './nedi/files:/var/nedi'
+      volumes:
+        - 'nedifiles:/var/nedi/'
 #       - './nginx-conf:/etc/nginx/conf.d'
 #       - './ssl:/etc/ssl/'
       depends_on:

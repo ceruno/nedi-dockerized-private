@@ -101,7 +101,9 @@ RUN set -ex; \
         ; \
         sed -i -e  '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_SRC_FOLDER/nedi.conf
+        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
+        ; \
+        sed -i -e  '/^nedipath/s|/var/nedi|'"${NEDI_FOLDER}"'|g' $NEDI_SRC_FOLDER/nedi.conf
 
 COPY nedi/docker-entrypoint.sh /usr/local/bin/
 COPY nedi/install.exp $NEDI_SRC_FOLDER
