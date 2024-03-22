@@ -41,6 +41,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      nginx \
      openssl \
      fping \
+     iputils-ping \
+     rcconf \
+     iperf \
+     net-tools \
+     openssh-client \
      inetutils-ping \
      libsnmp-dev \
      libfreetype6-dev \
@@ -74,6 +79,7 @@ RUN cpanm \
     LWP::UserAgent \
     Net::DNS::Resolver \
     Net::NTP \
+    Net::Telnet::Cisco \
     IO::Tty
 
 RUN set -ex; \
@@ -99,11 +105,17 @@ RUN set -ex; \
         ; \
         sed -i -e '/^dbuser/s/nedi/'"${NEDI_DB_USER}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
+        sed -i -e '/^dbname/s/nedi/'"${NEDI_DB_NAME}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
+        sed -i -e '/^dbpass/s/dbpa55/'"${NEDI_DB_PASS}"'/g' $NEDI_SRC_FOLDER/nedi.conf \
         ; \
-        sed -i -e  '/^nedipath/s|/var/nedi|'"${NEDI_FOLDER}"'|g' $NEDI_SRC_FOLDER/nedi.conf
+        sed -i -e '/^nedipath/s|/var/nedi|'"${NEDI_FOLDER}"'|g' $NEDI_SRC_FOLDER/nedi.conf \
+        ; \
+        sed -i -e '/^use Math::BigInt();/ause Time::HiRes;' /usr/share/perl5/Net/SNMP/Message.pm \
+        ; \
+        sed -i -e "/^   DEBUG_INFO('transport/i\ \ \ \$this->{_transport}->{_send_time} = Time::HiRes::time;\n" /usr/share/perl5/Net/SNMP/Message.pm \
+        ; \
+        echo "    KexAlgorithms=+diffie-hellman-group1-sha1" >> /etc/ssh/ssh_config
 
 COPY nedi/docker-entrypoint.sh /usr/local/bin/
 COPY nedi/install.exp $NEDI_SRC_FOLDER
