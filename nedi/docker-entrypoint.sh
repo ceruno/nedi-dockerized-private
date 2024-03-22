@@ -22,10 +22,10 @@ if [ ! -e $NEDI_FOLDER/nedi.conf ]; then
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
-wget -O $NEDI_FOLDER/inc/oui.csv https://standards.ieee.org/develop/regauth/oui/oui.csv
-wget -O $NEDI_FOLDER/inc/mam.csv https://standards.ieee.org/develop/regauth/oui28/mam.csv
-wget -O $NEDI_FOLDER/inc/oui36.csv https://standards.ieee.org/develop/regauth/oui36/oui36.csv
-wget -O $NEDI_FOLDER/inc/iab.csv https://standards.ieee.org/develop/regauth/iab/iab.csv
-wget -O $NEDI_FOLDER/inc/cid.csv https://standards.ieee.org/develop/regauth/cid/cid.csv
+curl -o $NEDI_FOLDER/inc/oui.csv https://standards.ieee.org/develop/regauth/oui/oui.csv
+curl -o $NEDI_FOLDER/inc/mam.csv https://standards.ieee.org/develop/regauth/oui28/mam.csv
+curl -o $NEDI_FOLDER/inc/oui36.csv https://standards.ieee.org/develop/regauth/oui36/oui36.csv
+curl -o $NEDI_FOLDER/inc/iab.csv https://standards.ieee.org/develop/regauth/iab/iab.csv
+curl -o $NEDI_FOLDER/inc/cid.csv https://standards.ieee.org/develop/regauth/cid/cid.csv
 
 /usr/local/sbin/php-fpm
