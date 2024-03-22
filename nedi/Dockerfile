@@ -41,7 +41,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      nginx \
      openssl \
      fping \
-     iputils-ping \
      rcconf \
      iperf \
      net-tools \
