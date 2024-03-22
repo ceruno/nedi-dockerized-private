@@ -22,6 +22,7 @@ if [ ! -e $NEDI_FOLDER/nedi.conf ]; then
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
+# Update MAC vendor database
 curl -o $NEDI_FOLDER/inc/oui.csv https://standards.ieee.org/develop/regauth/oui/oui.csv
 curl -o $NEDI_FOLDER/inc/mam.csv https://standards.ieee.org/develop/regauth/oui28/mam.csv
 curl -o $NEDI_FOLDER/inc/oui36.csv https://standards.ieee.org/develop/regauth/oui36/oui36.csv
