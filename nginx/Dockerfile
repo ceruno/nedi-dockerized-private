@@ -1,5 +1,8 @@
 FROM nginx:1.25
 
+ENV NEDI_FOLDER /var/nedi
+ENV NEDI_LOG_FOLDER /var/log/nedi
+
 #Install of dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
      openssl \
@@ -9,11 +12,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex; \
-        chown -R www-data:www-data /var/nedi \
+        mkdir -p $NEDI_FOLDER \
         ; \
-        mkdir -p /var/log/nedi \
+        chown -R www-data:www-data $NEDI_FOLDER \
         ; \
-        chown -R www-data:www-data /var/log/nedi \
+        mkdir -p $NEDI_LOG_FOLDER \
+        ; \
+        chown -R www-data:www-data $NEDI_LOG_FOLDER \
         ; \
         openssl genrsa -out /etc/ssl/private/server.key 2048 \
         ; \
