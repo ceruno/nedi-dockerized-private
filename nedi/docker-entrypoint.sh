@@ -29,4 +29,6 @@ curl -o $NEDI_FOLDER/inc/oui36.csv https://standards.ieee.org/develop/regauth/ou
 curl -o $NEDI_FOLDER/inc/iab.csv https://standards.ieee.org/develop/regauth/iab/iab.csv
 curl -o $NEDI_FOLDER/inc/cid.csv https://standards.ieee.org/develop/regauth/cid/cid.csv
 
+CD $NEDI_FOLDER
+
 /usr/local/sbin/php-fpm
