@@ -30,4 +30,4 @@ RUN set -ex; \
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx/nedi.conf /etc/nginx/conf.d/nedi.conf
-COPY nginx/phpmyadmin.conf /etc/nginx/conf.d/phpmyadmin.conf
+COPY nginx/adminer.conf /etc/nginx/conf.d/adminer.conf

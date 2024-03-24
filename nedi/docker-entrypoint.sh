@@ -28,6 +28,7 @@ curl -L -o $NEDI_FOLDER/inc/mam.csv https://standards.ieee.org/develop/regauth/o
 curl -L -o $NEDI_FOLDER/inc/oui36.csv https://standards.ieee.org/develop/regauth/oui36/oui36.csv
 curl -L -o $NEDI_FOLDER/inc/iab.csv https://standards.ieee.org/develop/regauth/iab/iab.csv
 curl -L -o $NEDI_FOLDER/inc/cid.csv https://standards.ieee.org/develop/regauth/cid/cid.csv
+curl -L -o $NEDI_FOLDER/adminer.php http://www.adminer.org/latest.php
 
 CD $NEDI_FOLDER
 

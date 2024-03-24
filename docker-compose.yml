@@ -24,7 +24,7 @@ services:
         - 80:80
         - 443:443
 #       - 8080:8080
-#       - 8443:8443
+        - 8443:8443
       links:
         - nedi
       volumes:
@@ -55,19 +55,16 @@ services:
       ports:
         - 514:514
 
-  # phpMyAdmin Service
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      restart: no
+  # Adminer Service
+  adminer:
+      image: adminer:fastcgi
+      restart: unless-stopped
       environment:
-          PMA_HOST: mariadb
+          ADMINER_DEFAULT_SERVER: mariadb
       depends_on:
         - mariadb
       networks:
         - backend
-      ports:
-        - 8080:8080
-        - 8443:8443
 
 networks:
   backend:
