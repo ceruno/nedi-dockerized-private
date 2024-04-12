@@ -139,4 +139,4 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh / &&\
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["--no-daemonize"]
 
-EXPOSE 514 9000
+EXPOSE 1514 9000

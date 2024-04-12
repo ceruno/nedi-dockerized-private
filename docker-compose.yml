@@ -53,7 +53,7 @@ services:
       networks:
         - backend
       ports:
-        - 514:514
+        - 514:1514
 
   # Adminer Service
   adminer:
