@@ -30,6 +30,8 @@ curl -L -o $NEDI_FOLDER/inc/iab.csv https://standards.ieee.org/develop/regauth/i
 curl -L -o $NEDI_FOLDER/inc/cid.csv https://standards.ieee.org/develop/regauth/cid/cid.csv
 curl -L -o $NEDI_FOLDER/adminer.php http://www.adminer.org/latest.php
 
+/usr/sbin/cron
+
 CD $NEDI_FOLDER
 
 /usr/local/sbin/php-fpm
