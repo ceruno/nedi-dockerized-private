@@ -48,6 +48,7 @@ services:
         NEDI_DB_NAME: nedi
         NEDI_DB_USER: root
         NEDI_DB_PASS: N3diRox
+        TZ: 'Europe/Vaduz'
       volumes:
         - 'nedifiles:/var/nedi/'
       networks:

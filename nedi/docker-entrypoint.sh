@@ -22,6 +22,11 @@ if [ ! -e $NEDI_FOLDER/nedi.conf ]; then
     chown -R www-data:www-data $NEDI_FOLDER
 fi
 
+# Set timezone
+if [ -n "$TZ" ]; then
+    echo $TZ > /etc/timezone
+fi
+
 # Update MAC vendor database
 curl -L -o $NEDI_FOLDER/inc/oui.csv https://standards.ieee.org/develop/regauth/oui/oui.csv
 curl -L -o $NEDI_FOLDER/inc/mam.csv https://standards.ieee.org/develop/regauth/oui28/mam.csv
