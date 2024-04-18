@@ -62,6 +62,7 @@ services:
       restart: unless-stopped
       environment:
           ADMINER_DEFAULT_SERVER: mariadb
+          ADMINER_DESIGN: 'galkaev'
       depends_on:
         - mariadb
       networks:
